@@ -1,7 +1,7 @@
 html {
   background: #000000;
   background-size: cover;
-  font-family: 'Helvetica Neue', 'Sans-serif';
+  font-family: 'Helvetica Neue', sans-serif;
   text-align: center;
   font-size: 10px;
 }

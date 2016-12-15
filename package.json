@@ -13,5 +13,5 @@
     "start": "node index"
   },
   "author": "Akinjide Bankole <r@akinjide.me>",
-  "license": "ISC"
+  "license": "MIT"
 }
