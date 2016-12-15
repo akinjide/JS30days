@@ -5,7 +5,7 @@ const app = express()
 app.set('view engine', 'jade')
 app.set('port', process.env.PORT || 3000)
 
-app.use(express.static(__dirname + '/static'));
+app.use(express.static(__dirname + '/static'))
 
 app.get('/', function(req, res) {
   res.render('help.jade')

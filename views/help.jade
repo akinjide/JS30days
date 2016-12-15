@@ -1,0 +1,18 @@
+extends base
+
+block vars
+  - var title = 'Help'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="help.css")
+
+block body
+
+  - var pages = ["drumKit", "clock", "cssJs", "cardio", "flexGallery", "ajaxAhead", "cardioTwo", "canvas"]
+
+  .pages
+    each page in pages
+      ul#page-list
+        li
+          a(href="/#{page}", rel="page" title="#{page} Page")
+            h4.title #{page}
