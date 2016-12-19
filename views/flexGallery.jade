@@ -1,0 +1,58 @@
+extends base
+
+block vars
+  - var title = 'Flex Panel Gallery'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="flexGallery.css")
+  link(rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Amatic+SC")
+
+block body
+
+  .panels
+    .panel.panel1
+      p Hey
+      p Let's
+      p Dance
+
+    .panel.panel2
+      p Give
+      p Take
+      p Receive
+
+    .panel.panel3
+      p Experience
+      p It
+      p Today
+
+    .panel.panel4
+      p Give
+      p All
+      p You can
+
+    .panel.panel5
+      p Life
+      p In
+      p Motion
+
+  script(type="text/javascript").
+    const $panels = document.querySelectorAll('.panel');
+
+    function togglePanel() {
+      const self = this
+
+      self.classList.toggle('open')
+    }
+
+    function toggleActive(e) {
+      const self = this
+
+      if (e.propertyName.includes('flex'))
+        self.classList.toggle('active')
+    }
+
+    $panels.forEach($panel => $panel.addEventListener('click', togglePanel))
+    $panels.forEach($panel => $panel.addEventListener('transitionend', toggleActive))
+
+
+
