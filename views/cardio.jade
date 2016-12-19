@@ -1,0 +1,90 @@
+extends base
+
+block vars
+  - var title = 'Array Cardio One'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="cardio.css")
+
+block body
+  h2 Cardio
+  p check console for values
+
+  script(type="text/javascript").
+    const programmers = [
+      { first: 'John', last: 'Backus', year: 1924, passed: 2007 },
+      { first: 'Danielle', last: 'Berry', year: 1949, passed: 1998 },
+      { first: 'Edsger', last: 'Dijkstra', year: 1930, passed: 2002 },
+      { first: 'Jim', last: 'Knopf', year: 1942, passed: 2013 },
+      { first: 'John', last: 'McCarthy', year: 1927, passed: 2011 },
+      { first: 'Mike', last: 'Muuss', year: 1958, passed: 2000 },
+      { first: 'Victor', last: 'Yngve', year: 1920, passed: 2012 },
+      { first: 'David', last: 'Wheeler', year: 1927, passed: 2004 },
+      { first: 'Jim', last: 'Weirich', year: 1956, passed: 2014 }
+    ]
+
+    const people = ["Lucy, Woods", "John, Yates", "Herbert, Maxwell", "Tom, Araya", "Montxo, Armendáriz", "Bernardo, Atxaga", "Juanma, Bajo", "Ulloa, Camren", "Bicondova, Pío", "Baroja, Nestor", "Basterretxea, Eduardo", "Chillida, Marie", "Darrieussecq, Hector", "Elizondo, Agustín", "Ibarrola, Jose", "Etxenagusia, Rafael", "Anton, Irisarri", "Álex, Iglesia", "Alejandro, González", "Iñárritu, Alfredo", "Landa, Guillermo", "Larrazábal, Robert", "Laxalt, Jesús", "Mari, Lazkano", "Julio, Médem", "Jorge, Oteiza", "Jenaro, Urrutia", "Olaran, Ignacio", "Zuloaga, Rafael", "Willians, Moneo", "Paco, Rabanne", "Cristóbal, Balenciaga", "John, Leguizamo", "Dolores, Tomas", "Arana, Xabi", "Alonso, José", "María, Javier", "Otxoa, Palacios", "Edurne, Pasaban", "Julián, Retegi", "Joane, Somarriba", "Iñaki, Urdangarín", "Ismael, Urzaiz", "Paulino, Uzcudun", "Pichichi, Telmo", "Zarraonandía, Andoni", "Zubizarreta, Iñaki"]
+
+    const data = ["car", "car", "van", "car", "truck", "walk", "van", "walk", "car", "bike", "truck", "car", "truck", "car", "van", "car", "walk", "bike", "van", "truck", "truck", "walk", "bike", "van", "bike", "truck", "walk", "van"]
+
+    //- Array.prototype.filter()
+    const nineteen = programmers.filter(programmer => programmer.year >= 1920)
+
+    //- Array.prototype.map()
+    const fullNames = programmers.map(programmer => `${programmer.first} ${programmer.last}`)
+
+    //- Array.prototype.sort()
+    const sorted = programmers.sort((a, b) => (a.year > b.year) ? 1 : -1)
+
+    //- Array.prototype.reduce()
+    const totalYears = programmers.reduce((total, programmer) => total + (programmer.passed - programmer.year), 0)
+
+    //- Array.prototype.sort()
+    const oldest = programmers.sort((a, b) => (a.passed - a.year) > (b.passed - b.year) ? -1 : 1)
+
+    //- Array.prototype.map() && Array.prototype.filter()
+    const containsC = programmers
+                        .map(programmer => `${programmer.first} ${programmer.last}`)
+                        .filter(fullNames => fullNames.includes('c'))
+
+    //- Array.prototype.sort()
+    const alphabetically = people.sort((a, b) => {
+      const [aLast, aFirst] = a.split(', ')
+      const [bLast, bFirst] = b.split(', ')
+
+      return aLast < bLast ? -1 : 1
+    })
+
+    //- Array.prototype.reduce()
+    const transportation = data.reduce((obj, item) => {
+      if (!obj[item])
+        obj[item] = 0
+
+      obj[item]++
+      return obj
+    }, {})
+
+
+    // 1. Filter the list of programmers for those who were born in the 1920's
+    console.table(nineteen)
+
+    // 2. Give us an array of the programmers first and last names
+    console.table(fullNames)
+
+    // 3. Sort the programmers by birthdate, oldest to youngest
+    console.table(sorted)
+
+    // 4. How many years did all the programmers live?
+    console.log(totalYears)
+
+    // 5. Sort the programmers by years lived
+    console.table(oldest)
+
+    // 6. Create a list of programmers that contain 'c' anywhere in the name
+    console.table(containsC)
+
+    // 7. Sort people alphabetically by last name
+    console.log(alphabetically)
+
+    // 8. Sum up the instances of each of data
+    console.log(transportation);
