@@ -1,0 +1,45 @@
+extends base
+
+block vars
+  - var title = 'Drum Kit'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="drumKit.css")
+
+block body
+
+  - var keyCodes = ["65", "83", "68", "70", "71", "72", "74", "75", "76"]
+  - var alphabets = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
+  - var sounds = ["clap", "hithat", "kick", "openhat", "boom", "ride", "snare", "tom", "tink"]
+
+  .keys
+    each keyCode, index in keyCodes
+      .key(data-key="#{keyCode}")
+        kbd #{alphabets[index]}
+        span.sound #{sounds[index]}
+
+  each keyCode, index in keyCodes
+    audio(data-key="#{keyCode}", src="sounds/#{sounds[index]}.wav")
+
+
+  script(type="text/javascript").
+    const $keys = document.querySelectorAll('.key')
+
+    window.addEventListener('keydown', (e) => {
+      const $audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+      const $key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+
+      if (!$audio) return
+
+      $audio.currentTime = 0
+      $audio.play()
+      $key.classList.toggle('playing')
+    })
+
+    function removeTransition(e) {
+      const self = this
+      if (e.propertyName !== 'transform') return
+      self.classList.remove('playing')
+    }
+
+    $keys.forEach($key => $key.addEventListener('transitionend', removeTransition))
