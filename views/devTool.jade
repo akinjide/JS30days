@@ -1,0 +1,88 @@
+extends base
+
+block vars
+  - var title = 'Console Tool Trick'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="devTool.css")
+
+block body
+
+  p(onClick="makeGreen()") xBREAKxDOWNx
+
+  h2 Dev Tools Trick
+  p check console for values
+
+  script(type="text/javascript").
+    const dogs = [
+      { name: 'Snickers', age: 2 },
+      { name: 'hugo', age: 8 }
+    ]
+
+    //- Get JS execution => Right-Click  Node elem, select `Break On` on ctx menu.
+    function makeGreen() {
+      const $p = document.querySelector('p')
+
+      $p.style.color = '#BADA55'
+      $p.style.fontSize = '50px'
+    }
+
+    // Clearing
+    console.clear()
+
+    // Regular
+    console.log('Hi Again!')
+
+    // Interpolated
+    console.log('Hello I am an %s', '👽')
+
+    // Styled
+    console.log('%c I am an Alien', 'font-size: 50px; text-shadow: 10px 10px 0 #00F')
+
+    // warning!
+    console.warn('Oh NOOO')
+
+    // Error :|
+    console.error('Shit!')
+
+    // Info
+    console.info('Humans will stab you! 🔪')
+
+    // Testing
+    const $p = document.querySelector('p')
+
+    console.assert($p.classList.contains('ouch'), 'That\'s wrong')
+
+    // Viewing DOM Elements
+    console.log($p)
+    console.dir($p)
+
+    // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`)
+      console.log(`This is ${dog.name}`)
+      console.log(`${dog.name} is ${dog.age} years old`)
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`)
+      console.groupEnd(`${dog.name}`)
+    })
+
+    // Counting
+    console.count('Akinjide')
+    console.count('Akinjide')
+    console.count('Steve')
+    console.count('Akinjide')
+    console.count('Steve')
+    console.count('Akinjide')
+
+    // Timing
+    console.time('fetching data')
+    fetch('https://api.github.com/users/akinjide')
+      .then(blob => blob.json())
+      .then(data => {
+        console.timeEnd('fetching data')
+        console.log(data)
+      })
+
+
+    // Table
+    console.table(dogs)
