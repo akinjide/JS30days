@@ -1,0 +1,66 @@
+extends base
+
+block vars
+  - var title = 'Ajax Type Ahead'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="ajaxAhead.css")
+
+block body
+
+  form
+    input.search(type="text" placeholder="City or State")
+    ul.suggestions
+      li Filter for a city
+      li or a state
+
+  script(type="text/javascript").
+    const endpoint = "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"
+    const cities = []
+    const $search = document.querySelector('.search')
+    const $suggestions = document.querySelector('.suggestions')
+
+    fetch(endpoint)
+      .then(blob => blob.json())
+      .then(data => cities.push(...data))
+
+    function match(word, cities) {
+      return cities.filter(place => {
+        const regex = new RegExp(word, 'gi')
+
+        return place.city.match(regex) || place.state.match(regex)
+      })
+    }
+
+    function commas(number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function matches() {
+      const result = match(this.value, cities)
+      const bindHTML = result.map(place => {
+        const regex = new RegExp(this.value, 'gi')
+        const highlight = `<span class="hl">${this.value}</span>`
+        const cityName = place.city.replace(regex, highlight)
+        const stateName = place.state.replace(regex, highlight)
+
+        return `
+          <li>
+            <span class="name">${cityName}, ${stateName}</span>
+            <span class="population">${commas(place.population)}</span>
+          </li>
+        `
+      }).join('')
+
+      $suggestions.innerHTML = bindHTML
+    }
+
+    function addMultipleListeners(elem, e, handler) {
+      if (!(e instanceof Array))
+        throw 'addMultipleListeners: please supply an array of eventstrings (like ["click","mouseover"])'
+
+      for (let i = 0; i < e.length; i++)
+        elem.addEventListener(e[i], handler)
+    }
+
+    addMultipleListeners($search, ['change', 'keyup'], matches)
