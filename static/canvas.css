@@ -1,0 +1,9 @@
+html, body {
+  margin: 0;
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
