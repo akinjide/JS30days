@@ -1,0 +1,40 @@
+extends base
+
+block vars
+  - var title = 'Shift and Check Multiple Boxes'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="checkBoxes.css")
+
+block body
+
+  - var lists = ["This is an inbox layout.", "Check one item", "Hold down your shift key", "Check a lower item", "Everything in between should also be set to checked", "Try to do it with out any libraries", "Just regular Javascript", "Good Luck!", "Don't forget to tweet your result!"]
+
+  h4 The following is a common layout you would see in an email client. When a user clicks a <strong>checkbox</strong>, holds <strong>Shift</strong>, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
+
+  .inbox
+    each list in lists
+      .item
+        input(type="checkbox")
+        p #{list}
+
+  script(type="text/javascript").
+    const $inputs = document.querySelectorAll('input[type="checkbox"]')
+    let lastInput
+
+    function handler(e) {
+      let inBetween = false
+
+      if (e.shiftKey && this.checked) {
+        $inputs.forEach(input => {
+          if (input === this || input === lastInput) inBetween = !inBetween
+          if (inBetween) input.checked = true
+        })
+      }
+
+      lastInput = this
+    }
+
+    $inputs.forEach(($input, index) => {
+      $input.addEventListener('click', handler)
+    })
