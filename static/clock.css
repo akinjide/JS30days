@@ -47,8 +47,8 @@ body {
   transform: rotate(90deg);
   transition: all .05s;
   transition-timing-function: ease-in-out;
-  border-bottom-right-radius: 2px;
-  border-top-right-radius: 2px;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .notransition {
