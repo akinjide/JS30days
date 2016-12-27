@@ -5,6 +5,7 @@ block vars
 
 block styles
   link(rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans%3A400%2C500%2C600&amp;ver=4.4.5")
+  link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css")
   link(rel="stylesheet" type="text/css" href="help.css")
 
 block body
@@ -13,9 +14,12 @@ block body
 
   header
     h2 I Love
-  .pages
+  .pages.wobble
     ul#page-list
       each page in pages
         li
           a(href="/#{page}", rel="page" title="#{page} Page")
             h4.title #{page}
+
+  a.button__sticky(href="https://www.twitter.com/_akinjide" target="_blank")
+      i.fa.fa-twitter
