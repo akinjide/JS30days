@@ -1,0 +1,87 @@
+extends base
+
+block vars
+  - var title = 'HTML5 Video Player'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="vidPlayer.css")
+
+block body
+
+  video.player__video.viewer.stopfade(poster="images/polina.jpg")
+    source(src="videos/polina.mp4" type="video/mp4")
+
+  .player__controls__main
+    button.player__button__main.toggle(title="Play") ►
+
+  .player__controls
+    .progress
+      .progress__filled
+
+    button.player__button.toggle(title="Play") ►
+
+    input.player__slider(type="range" name="volume" min="0" max="1" step="0.05" value="1")
+    input.player__slider(type="range" name="playbackRate" min="0.5" max="2" step="0.1" value="1")
+
+    button.player__button(data-skip="-10") ⟲ 10s
+    button.player__button(data-skip="25") 25s ⟳
+    button.player__button(data-loop="true") loop ⥀
+
+  script(type="text/javascript").
+    const $body = document.querySelector('body')
+    const $video = $body.querySelector('.viewer')
+
+    const $progressBar = $body.querySelector('.progress__filled')
+    const $progress = $body.querySelector('.progress')
+
+    const $toggles = $body.querySelectorAll('.toggle')
+    const $skipButtons = $body.querySelectorAll('[data-skip]')
+    const $ranges = $body.querySelectorAll('.player__slider')
+
+    const $loopButton = $body.querySelector('[data-loop]')
+
+
+    function togglePlay() {
+      if ($video.paused) $video.classList.toggle("stopfade")
+      $video[$video.paused ? 'play' : 'pause']()
+    }
+
+    function updateButton() {
+      if ($video.paused) $video.classList.toggle("stopfade")
+      $toggles.forEach(toggle => { toggle.textContent = this.paused ? '►' : '❚❚' })
+    }
+
+    function skip() { $video.currentTime += parseFloat(this.dataset.skip) }
+
+    function range() { $video[this.name] = this.value }
+
+    function progress() { $progressBar.style.flexBasis = `${($video.currentTime / $video.duration) * 100}%` }
+
+    function scrub(e) { $video.currentTime = `${(e.offsetX / $progress.offsetWidth) * $video.duration}` }
+
+    function loop() {
+      if (!!this.dataset.loop) {
+        $video.loop, this.dataset.loop = true, false
+      }
+      else {
+        $video.loop, this.dataset.loop =  false, true
+      }
+      console.log($video.loop)
+    }
+
+    $video.addEventListener('click', togglePlay)
+    $video.addEventListener('play', updateButton)
+    $video.addEventListener('pause', updateButton)
+    $video.addEventListener('timeupdate', progress)
+
+    $toggles.forEach(toggle => toggle.addEventListener('click', togglePlay))
+    $skipButtons.forEach(button => button.addEventListener('click', skip))
+    $ranges.forEach(button => button.addEventListener('click', range))
+    $loopButton.addEventListener('click', loop)
+
+    let mouse = false
+    $progress.addEventListener('click', scrub)
+    $progress.addEventListener('mousemove', (e) => mouse && scrub(e))
+    $progress.addEventListener('mouseup', () => mouse = false)
+    $progress.addEventListener('mousedown', () => mouse = true)
+    $progress.addEventListener('mouseout', () => mouse = false)
