@@ -1,0 +1,18 @@
+extends base
+
+block vars
+  - var title = 'Key Sequence Detection'
+
+block body
+
+  script(type="text/javascript", src="http://www.cornify.com/js/cornify.js")
+  script(type="text/javascript").
+    const pressedKeys = []
+    const secretCode = 'code'
+
+    window.addEventListener('keyup', (e) => {
+      pressedKeys.push(e.key)
+      pressedKeys.splice(-secretCode.lenght - 1, pressedKeys.length - secretCode.length)
+
+      if (pressedKeys.join('').includes(secretCode)) cornify_add()
+    })
