@@ -26,7 +26,8 @@ block body
         .map(result => result.transcript)
         .join('')
 
-      $p.textContent = transcript
+      const modifiedScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
+      $p.textContent = modifiedScript
 
       if (e.results[0].isFinal) {
         $p = document.createElement('p')
