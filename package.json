@@ -5,12 +5,14 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.14.0",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "nodemon": "^1.11.0",
+    "serve-favicon": "^2.3.2"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
+    "start": "nodemon index"
   },
   "author": "Akinjide Bankole <r@akinjide.me>",
   "license": "MIT"
