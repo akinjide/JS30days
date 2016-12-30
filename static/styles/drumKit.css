@@ -1,6 +1,6 @@
 html {
   font-size: 10px;
-  background: url(http://www.busestoconcerts.com/communities/8/004/008/554/698//images/4621827369.jpg) bottom center;
+  background: url('/images/4621827369.jpg') bottom center;
   background-size: cover;
 }
 body, html {
