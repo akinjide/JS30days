@@ -1,0 +1,33 @@
+body {
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.videos {
+  list-style: inside square;
+  font-size: 14px;
+  background: #FFFFFF;
+  width: 400px;
+  margin: auto;
+  padding: 0;
+  box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.videos li {
+  border-bottom: 1px solid #EFEFEF;
+  padding: 20px;
+}
+
+.videos li span { font-size: 10px; float: right }
+
+.videos li.total {
+  font-weight: 600;
+  text-align: center;
+  list-style-type: none
+}
+
+.videos li.total span { float: none; font-size: 12px }
+
+.videos li:last-child { border-bottom: 0; }
