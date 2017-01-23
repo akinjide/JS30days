@@ -13,7 +13,7 @@ $ cat ABOUT.md
 # Grab the course => https://JavaScript30.com
 ```
 
-I took this course to help focus more on enhancing my current skill-set and reduce my reliance on external JS libraries, And I decided to mix it up by using [Node.js]() and [Jade Templating Engine](). I'm documenting this to share my learning with others, or recommend to JS n00bs, that haven't written enough or want to learn JavaScript.
+I took this course to help focus more on enhancing my current skill-set and reduce my reliance on external JS libraries, And I decided to mix it up by using [Node.js](https://nodejs.org/en/) and [Jade Templating Engine](http://jadelang.net). I'm documenting this to share my learning with others, or recommend to JS n00bs, that haven't written enough or want to learn JavaScript.
 
 ### `prerequisites`
 You're going to need:
@@ -39,14 +39,14 @@ $ npm start
 # stuff happening ¯_(ツ)_/¯ *: 1334
 ```
 
-You can now see the app at http://localhost:1334. Whoa!
+You can now see the app at `http://localhost:1334`. Whoa!
 
 ### `note`
 This is intended as a quick reference and showcase. Scratch this. You can use this repo content however you'd like. Suggest or Shoot a pull request if you notice any bug 🐞.
 
 Internet Explorer 9, Firefox, Opera, Chrome, and Safari support <canvas> and its properties and methods. However, Internet Explorer 8 and earlier versions, do not support the <canvas> element and some other ES6 features.
 
-### `CheckList`
+### `checklist`
 
 1. [x] ~~[JavaScript Drum Kit](https://github.com/akinjide/JS30days/blob/master/views/drumKit.jade)~~
 2. [x] ~~[JS + CSS Clock](https://github.com/akinjide/JS30days/blob/master/views/clock.jade)~~
