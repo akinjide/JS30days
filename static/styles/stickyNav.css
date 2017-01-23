@@ -1,0 +1,91 @@
+html {
+  background: #EEEEEE;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue';
+  font-size: 20px;
+  font-weight: 200;
+}
+
+body { margin: 0; }
+
+*, *:before, *:after { box-sizing: inherit; }
+
+.site-wrap {
+  background: #FFFFFF;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+  margin: 70px auto;
+  max-width: 700px;
+  padding: 40px;
+  text-align: justify;
+  transform: scale(0.98);
+  transition: transform 0.5s;
+}
+
+.fixed-nav .site-wrap { transform: scale(1); }
+
+header {
+  align-items: center;
+  background: url(http://wes.io/iEgP/wow-so-deep.jpg) bottom center no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 50vh;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  color: #FFFFFF;
+  font-size: 7vw;
+  text-shadow: 3px 4px 0 rgba(0,0,0,0.2)
+}
+
+nav {
+  background: #000000;
+  position: relative;
+  top: 0;
+  transition: all 0.5s;
+  width: 100%;
+  z-index: 1;
+}
+
+.fixed-nav nav {
+  position: fixed;
+  box-shadow: 0 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+li.logo {
+  background: #FFFFFF;
+  font-size: 30px;
+  font-weight: 600;
+  max-width: 0;
+  overflow: hidden;
+  transition: all .5s;
+}
+
+.fixed-nav li.logo { max-width: 500px; }
+
+li.logo a { color: #000000; }
+
+nav a {
+  color: #FFFFFF;
+  display: inline-block;
+  padding: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
