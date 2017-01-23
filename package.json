@@ -1,7 +1,7 @@
 {
-  "name": "30days",
+  "name": "JS30days",
   "version": "1.0.0",
-  "description": "",
+  "description": "JavaScript 30 Day Challenge using Node.js with Jade.",
   "main": "index.js",
   "dependencies": {
     "express": "^4.14.0",
@@ -9,10 +9,13 @@
     "nodemon": "^1.11.0",
     "serve-favicon": "^2.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.18.6"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index"
+    "start": "nodemon index",
+    "start:sync": "nodemon index && npm run sync",
+    "sync": "browser-sync start --proxy 'localhost:1334' --https --serveStatic 'static'"
   },
   "author": "Akinjide Bankole <r@akinjide.me>",
   "license": "MIT"
