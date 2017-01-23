@@ -67,7 +67,7 @@ block body
         // yank out pixels
         let pixels = ctx.getImageData(0, 0, width, height)
         // manipulate pixels
-        //- pixels = greenScreen(pixels)
+        pixels = rgbSplit(pixels)
         //- ctx.globalAlpha = 0.1
         // return pixels to canvas
         ctx.putImageData(pixels, 0, 0)
