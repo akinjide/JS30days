@@ -15,12 +15,12 @@ block body
     span.units &nbsp;KM/H
 
   script(type="text/javascript").
-    const arrow = document.querySelector('.arrow')
-    const speed = document.querySelector('.speed-value')
+    const $arrow = document.querySelector('.arrow')
+    const $speed = document.querySelector('.speed-value')
 
     navigator.geolocation.watchPosition(data => {
-      speed.textContent = data.coords.speed
-      arrow.style.transform = `rotate(${data.coords.heading}deg)`
+      $speed.textContent = data.coords.speed
+      $arrow.style.transform = `rotate(${data.coords.heading}deg)`
     }, err => {
     console.log(err)
       alert(new Error('Hey! You gotta allow that to happen!'))

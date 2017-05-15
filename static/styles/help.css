@@ -17,7 +17,8 @@ body {
 }
 
 body .pages {
-  height: 280px;
+  max-height: 280px;
+  height: auto;
   width: 180px;
   overflow-y: auto;
   transition: 0.7s;

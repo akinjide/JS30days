@@ -1,0 +1,45 @@
+extends base
+
+block vars
+  - var title = 'Click And Drag to Scroll'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="styles/clickAndDrag.css")
+
+block body
+
+  - var numbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25"]
+
+  .items
+    each number in numbers
+      .item(class="item#{number}")= number
+
+  script(type="text/javascript").
+    const $slider = document.querySelector('.items')
+    let isDown = false
+    let startX, scrollLeft
+
+    function handleMouseDown(e) {
+      isDown = true
+      $slider.classList.add('active')
+      startX = e.pageX - $slider.offsetLeft
+      scrollLeft = $slider.offsetLeft
+    }
+
+    function handleMouseMove(e) {
+      if (!isDown) return
+      e.preventDefault()
+      const x = e.pageX - $slider.offsetLeft
+      const deviate = x - startX
+      $slider.scrollLeft = scrollLeft - deviate
+    }
+
+    function handleMouseUpLeave() {
+      isDown = false
+      $slider.classList.remove('active')
+    }
+
+    $slider.addEventListener('mousedown', handleMouseDown)
+    $slider.addEventListener('mouseleave', handleMouseUpLeave)
+    $slider.addEventListener('mouseup', handleMouseUpLeave)
+    $slider.addEventListener('mousemove', handleMouseMove)

@@ -1,0 +1,47 @@
+extends base
+
+block vars
+  - var title = 'Event Capture, Propagation, Bubbling and Once'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="styles/eventCapture.css")
+
+block body
+
+  .one
+    .two
+      .three
+
+  input(type="checkbox" name="stopPropagation" data-type="stopPropagation")
+  span &nbsp; Stop Propagation
+
+  script(type="text/javascript").
+    const $divs = document.querySelectorAll('div')
+    const $stopPropagationButton = document.querySelector('input[data-type="stopPropagation"]')
+
+    let propagate;
+
+    function logText(e) {
+      if (propagate) {
+        console.log(this.classList.value)
+        e.stopPropagation() // stop bubbling!!
+      } else
+        console.log(this.classList.value)
+    }
+
+    function updateHandler() {
+      switch(this.dataset.type) {
+        case 'stopPropagation':
+          if (this.checked) propagate = true
+          else propagate = false
+
+          break;
+      }
+    }
+
+    $stopPropagationButton.addEventListener('change', updateHandler)
+
+    $divs.forEach(div => div.addEventListener('click', logText, {
+      capture,
+      once
+    }))
