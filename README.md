@@ -72,9 +72,9 @@ Internet Explorer 9, Firefox, Opera, Chrome, and Safari support <canvas> and its
 22. [x] ~~[Follow Along Link Highlighter](https://github.com/akinjide/JS30days/blob/master/views/alongLinks.jade)~~
 23. [x] ~~[Speech Synthesis](https://github.com/akinjide/JS30days/blob/master/views/speechSynthesis.jade)~~
 24. [x] ~~[Sticky Nav](https://github.com/akinjide/JS30days/blob/master/views/stickyNav.jade)~~
-25. [ ] Event Capture, Propagation, Bubbling, and Once
-26. [ ] Stripe Follow Along Nav
-27. [ ] Click and Drag
+25. [x] ~~[Event Capture, Propagation, Bubbling, and Once](https://github.com/akinjide/JS30days/blob/master/views/eventCapture.jade)~~
+26. [x] ~~[Stripe Follow Along Nav](https://github.com/akinjide/JS30days/blob/master/views/stripeAlongLinks.jade)~~
+27. [x] ~~[Click and Drag](https://github.com/akinjide/JS30days/blob/master/views/clickAndDrag.jade)~~
 28. [ ] Video Speed Controller
 29. [ ] Countdown Timer
 30. [ ] Whack A Mole
