@@ -28,6 +28,7 @@ You're going to need:
 4. Initialize and start the project:
 
 ```shell
+$ npm install -g nodemon
 $ npm install
 $ npm start
 
@@ -75,6 +76,6 @@ Internet Explorer 9, Firefox, Opera, Chrome, and Safari support <canvas> and its
 25. [x] ~~[Event Capture, Propagation, Bubbling, and Once](https://github.com/akinjide/JS30days/blob/master/views/eventCapture.jade)~~
 26. [x] ~~[Stripe Follow Along Nav](https://github.com/akinjide/JS30days/blob/master/views/stripeAlongLinks.jade)~~
 27. [x] ~~[Click and Drag](https://github.com/akinjide/JS30days/blob/master/views/clickAndDrag.jade)~~
-28. [ ] Video Speed Controller
-29. [ ] Countdown Timer
-30. [ ] Whack A Mole
+28. [x] ~~[Video Speed Controller](https://github.com/akinjide/JS30days/blob/master/views/videoSpeedUI.jade)~~
+29. [x] ~~[Countdown Timer](https://github.com/akinjide/JS30days/blob/master/views/countdown.jade)~~
+30. [x] ~~[Whack A Mole](https://github.com/akinjide/JS30days/blob/master/views/whackAMole.jade)~~
