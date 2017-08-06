@@ -1,0 +1,35 @@
+extends base
+
+block vars
+  - var title = 'Video Speed Controller UI'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="styles/videoSpeedUI.css")
+
+block body
+
+  .wrapper
+    video(width="765", height="430", loop, autoplay, controls).flex
+      source(src="videos/TheMind.mp4" type="video/mp4")
+
+    .speed
+      .speed-bar 1×
+
+  script(type="text/javascript").
+    const $speed = document.querySelector('.speed')
+    const $bar = $speed.querySelector('.speed-bar')
+    const $video = document.querySelector('.flex')
+
+    $speed.addEventListener('mousemove', function(e) {
+      const y = e.pageY - this.offsetTop
+      const percent = y / this.offsetHeight
+
+      const min = 0.4
+      const max = 4
+      const height = Math.round(percent * 100) + '%'
+      const playbackRate = percent * (max - min) + min
+
+      $bar.style.height = height
+      $bar.textContent = playbackRate.toFixed(0) + '×'
+      $video.playbackRate = playbackRate
+    })

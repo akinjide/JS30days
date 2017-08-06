@@ -1,0 +1,75 @@
+extends base
+
+block vars
+  - var title = 'Whack A Mole!'
+
+block styles
+  link(rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700")
+  link(rel="stylesheet" type="text/css" href="styles/whackAMole.css")
+
+block body
+
+  h1 Whack-a-mole!
+    span.score 0
+  button(onClick="startGame()") Start!
+
+  .game
+    - var classes = ["hole1", "hole2", "hole3", "hole4", "hole5", "hole6"]
+
+    each holeClass in classes
+      .hole(class="#{holeClass}")
+        .mole
+
+  script(type="text/javascript").
+    const $holes = document.querySelectorAll('.hole')
+    const $scoreBoard = document.querySelector('.score')
+    const $moles = document.querySelectorAll('.mole')
+    let lastHole
+    let timeUp = false
+    let score = 0
+
+    function randomTime(min, max) {
+      return Math.round(Math.random() * (max - min) + min)
+    }
+
+    function randomHole(holes) {
+      const index = Math.floor(Math.random() * holes.length)
+      const hole = holes[index]
+      if (hole === lastHole) {
+        console.log('Ah nah that\'s the same one bud')
+        return randomHole($holes)
+      }
+
+      lastHole = hole
+      return hole
+    }
+
+    function peep() {
+      const time = randomTime(200, 1000)
+      const hole = randomHole($holes)
+
+      hole.classList.add('up')
+      setTimeout(() => {
+        hole.classList.remove('up')
+
+        if (!timeUp) peep()
+      }, time)
+    }
+
+    function startGame() {
+      $scoreBoard.textContent = score = 0
+      timeUp = false
+
+      peep()
+      setTimeout(() => timeUp = true, 10000)
+    }
+
+    function bonk(e) {
+      if (!e.isTrusted) return
+
+      score++
+      this.classList.remove('up')
+      $scoreBoard.textContent = score
+    }
+
+    $moles.forEach($mole => $mole.addEventListener('click', bonk))
